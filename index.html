@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pixel-background"></div>
+    <div class="container">
+        <!-- Retro Window Container -->
+        <div class="retro-window">
+            <!-- Window Header -->
+            <div class="window-header">
+                <div class="window-title">🎵 Happy Birthday Harumi! 🎵</div>
+                <div class="window-controls">
+                    <button class="window-button minimize">−</button>
+                    <button class="window-button maximize">□</button>
+                    <button class="window-button close">×</button>
+                </div>
+            </div>
+            
+            <!-- Window Content -->
+            <div class="window-content">
+                <!-- Music Player -->
+                <div class="music-player-container">
+                    <div class="music-player">
+                        <div class="song-info">
+                            <div class="song-title" id="songTitle">Select a song</div>
+                            <div class="equalizer" id="equalizer">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                        <div class="player-controls">
+                            <button class="pixel-button music-btn" id="prevSongBtn">⏮️</button>
+                            <button class="pixel-button music-btn" id="playPauseBtn">▶️</button>
+                            <button class="pixel-button music-btn" id="nextSongBtn">⏭️</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slideshow-wrapper">
+                    <div class="slideshow-container">
+                        <!-- Slides will be added by JavaScript -->
+                    </div>
+                    <div class="scrollbar">
+                        <div class="scrollbar-up">▲</div>
+                        <div class="scrollbar-track">
+                            <div class="scrollbar-thumb"></div>
+                        </div>
+                        <div class="scrollbar-down">▼</div>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="pixel-button" id="prev-btn">← Prev</button>
+                    <div class="page-counter">
+                        <span id="currentPage">1</span> / <span id="totalPages">4</span>
+                    </div>
+                    <button class="pixel-button" id="next-btn">Next →</button>
+                </div>
+                <div class="page-indicators" id="pageIndicators">
+                    <!-- Page dots will be added by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Birthday Popup -->
+    <div class="birthday-popup" id="birthdayPopup">
+        <div class="popup-content">
+            <div class="window-header">
+                <div class="window-title">🎂 Birthday Message 🎂</div>
+                <div class="window-controls">
+                    <button class="window-button close" id="closePopup">×</button>
+                </div>
+            </div>
+            <div class="popup-body">
+                <h1>HAPPY BIRTHDAY HARUMI!</h1>
+                <div class="pixel-hearts">
+                    <div class="heart">💖</div>
+                    <div class="heart">💖</div>
+                    <div class="heart">💖</div>
+                </div>
+                <p>Ni bomboclat!</p>
+                <button class="pixel-button" id="startButton">Start! 🎶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="clickSound" preload="auto">
+        <source src="click.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
