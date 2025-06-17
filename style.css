@@ -21,7 +21,7 @@ body {
   height: 100%;
   z-index: -1;
   background-image: linear-gradient(rgba(255, 235, 243, 0.9), rgba(255, 235, 243, 0.9)),
-    url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pixelbg.jpg-zFTuSwgsIV5g29I0rn0e78ItRCUtVb.jpeg');
+    url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pixelbg.jpg-zFTuSwgsIV5g29I0rn0e78ItRCUtVb.jpeg");
   background-size: cover;
   background-position: center;
   animation: backgroundScroll 60s linear infinite;
@@ -238,7 +238,6 @@ body {
   }
 }
 
-
 .player-controls {
   display: flex;
   justify-content: center;
@@ -331,65 +330,30 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around; /* Better distribution */
+  justify-content: center;
   position: relative;
-  padding: 10px 0; /* Add some padding */
+  padding: 10px 0;
   box-sizing: border-box;
 }
 
 .gallery-main {
-  width: 90%; /* Responsive width */
+  width: 90%;
   max-width: 400px;
-  height: auto; /* Auto height based on aspect ratio */
-  aspect-ratio: 4 / 3; /* Maintain aspect ratio for the image container */
+  height: auto;
+  aspect-ratio: 4 / 3;
   position: relative;
-  margin-bottom: 15px; /* Adjusted */
+  margin-bottom: 15px;
 }
 
 .gallery-image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Changed to contain to see full image */
+  object-fit: contain;
   border: 3px solid #e77fa8;
   border-radius: 6px;
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
   image-rendering: pixelated;
-}
-
-.gallery-controls {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 10px;
-}
-
-.gallery-btn {
-  width: 40px;
-  height: 40px;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border-radius: 6px;
-  background-color: #ffb6c1;
-  border: 2px solid #e77fa8;
-  color: #333;
-  cursor: pointer;
-  font-family: "Press Start 2P", cursive;
-  transition: all 0.1s;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
-}
-
-.gallery-btn:hover {
-  background-color: #ff9eb5;
-  transform: translate(1px, 1px);
-  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
-}
-
-.gallery-btn:active {
-  transform: translate(3px, 3px);
-  box-shadow: none;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .gallery-counter {
@@ -400,65 +364,7 @@ body {
   padding: 5px 10px;
   border-radius: 4px;
   text-shadow: none;
-}
-
-.gallery-thumbnails {
-  display: flex;
-  gap: 8px; /* Increased gap */
-  justify-content: flex-start; /* Align to start for scrolling */
-  width: 90%; /* Take up most of the width */
-  max-width: 100%;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  overflow-y: hidden;
-  padding: 8px 5px; /* Add some padding */
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
-  scrollbar-width: thin;
-  scrollbar-color: #ff6b9e #ffe6ee;
-  white-space: nowrap; /* Keep thumbnails in one line */
-  box-sizing: border-box;
-}
-
-.gallery-thumbnails::-webkit-scrollbar {
-  height: 8px; /* Slightly thicker scrollbar */
-}
-
-.gallery-thumbnails::-webkit-scrollbar-track {
-  background: #ffe6ee;
-  border-radius: 4px; /* Rounded track */
-}
-
-.gallery-thumbnails::-webkit-scrollbar-thumb {
-  background: #ff6b9e;
-  border-radius: 4px; /* Rounded thumb */
-}
-
-.gallery-thumbnails::-webkit-scrollbar-thumb:hover {
-  background: #e77fa8;
-}
-
-.gallery-thumb {
-  width: 50px; /* Larger thumbnails */
-  height: 50px; /* Larger thumbnails */
-  object-fit: cover;
-  border: 2px solid #e77fa8;
-  border-radius: 4px;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: all 0.2s;
-  image-rendering: pixelated;
-  flex-shrink: 0; /* Prevent shrinking */
-  display: inline-block; /* Ensure they stay in line */
-}
-
-.gallery-thumb.active {
-  opacity: 1;
-  border-color: #ff6b9e;
-  transform: scale(1.1);
-}
-
-.gallery-thumb:hover {
-  opacity: 0.8;
+  margin-bottom: 10px;
 }
 
 /* Navigation */
@@ -669,17 +575,31 @@ body {
   border-radius: 2px;
 }
 
-.bar:nth-child(1) { animation-delay: 0s; }
-.bar:nth-child(2) { animation-delay: 0.1s; }
-.bar:nth-child(3) { animation-delay: 0.2s; }
-.bar:nth-child(4) { animation-delay: 0.3s; }
-.bar:nth-child(5) { animation-delay: 0.4s; }
-
-@keyframes equalize {
-  0%, 100% { transform: scaleY(0.25); } /* Use transform for smoother animation */
-  50% { transform: scaleY(1); }
+.bar:nth-child(1) {
+  animation-delay: 0s;
+}
+.bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.bar:nth-child(5) {
+  animation-delay: 0.4s;
 }
 
+@keyframes equalize {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  } /* Use transform for smoother animation */
+  50% {
+    transform: scaleY(1);
+  }
+}
 
 /* Autoplay Notification */
 .autoplay-notification {
@@ -718,17 +638,18 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) { /* Slightly larger breakpoint for tablets */
-    .slide h2 {
-        font-size: 1.3rem;
-    }
-    .slide p {
-        font-size: 0.9rem;
-    }
-    .pixel-button {
-        padding: 8px 12px;
-        font-size: 0.7rem;
-    }
+@media (max-width: 768px) {
+  /* Slightly larger breakpoint for tablets */
+  .slide h2 {
+    font-size: 1.3rem;
+  }
+  .slide p {
+    font-size: 0.9rem;
+  }
+  .pixel-button {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -799,28 +720,9 @@ body {
     object-fit: contain; /* Ensure full image is visible */
   }
 
-  .gallery-controls {
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-  .gallery-btn {
-    width: 35px;
-    height: 35px;
-    font-size: 0.9rem;
-  }
   .gallery-counter {
     font-size: 0.6rem; /* As per original */
     padding: 4px 8px; /* Adjusted padding */
-  }
-
-  .gallery-thumbnails {
-    gap: 5px; /* Fine-tuned */
-    max-height: 70px; /* Slightly more height */
-    padding: 5px;
-  }
-  .gallery-thumb {
-    width: 45px; /* Slightly larger for easier tap */
-    height: 45px; /* Slightly larger for easier tap */
   }
 
   .navigation {
@@ -830,7 +732,8 @@ body {
     justify-content: center; /* Center items when wrapped */
     gap: 10px;
   }
-  .pixel-button { /* General navigation buttons */
+  .pixel-button {
+    /* General navigation buttons */
     padding: 8px 10px;
     font-size: 0.7rem;
   }
@@ -842,10 +745,10 @@ body {
     text-align: center;
     margin-bottom: 5px;
   }
-  #prev-btn, #next-btn {
+  #prev-btn,
+  #next-btn {
     min-width: 80px; /* Ensure they have some width */
   }
-
 
   .page-indicators {
     padding: 10px;
