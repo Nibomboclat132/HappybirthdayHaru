@@ -32,7 +32,7 @@ body {
     background-position: 0 0;
   }
   100% {
-    background-position: 100px 100px;
+    background-position: 100px 100px; /* Adjusted for subtle effect */
   }
 }
 
@@ -67,11 +67,17 @@ body {
   font-family: "Press Start 2P", cursive;
   font-size: 0.8rem;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1; /* Allow title to take space */
+  margin-right: 10px; /* Space before controls */
 }
 
 .window-controls {
   display: flex;
   gap: 5px;
+  flex-shrink: 0; /* Prevent controls from shrinking */
 }
 
 .window-button {
@@ -201,7 +207,7 @@ body {
   border: 2px solid #e77fa8;
   border-radius: 6px;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Important for marquee */
 }
 
 .song-title {
@@ -209,24 +215,29 @@ body {
   font-size: 0.9rem;
   color: #333;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* overflow: hidden; managed by JS for scrolling */
+  /* text-overflow: ellipsis; */
   padding: 5px 0;
   position: relative;
+  display: inline-block; /* For scrolling animation to work well */
 }
 
 .song-title.scrolling {
   animation: marquee 10s linear infinite;
+  display: inline-block; /* Ensure it behaves as expected */
+  padding-left: 100%; /* Start off-screen */
+  will-change: transform;
 }
 
 @keyframes marquee {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-100%);
   }
 }
+
 
 .player-controls {
   display: flex;
@@ -250,32 +261,10 @@ body {
   transform: scale(0.95);
 }
 
-/* Pixel Border */
-.pixel-border {
-  border: 4px solid #333;
-  position: relative;
-  background-color: #fff;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  transform: none;
-}
-
-.pixel-border::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
-  border: 4px solid #ff9ec6;
-  z-index: -1;
-  border-radius: 12px;
-}
-
 /* Slideshow */
 .slideshow-container {
   position: relative;
-  height: 450px;
+  height: 450px; /* This height might need adjustment for very small screens */
   overflow: hidden;
   border-radius: 4px;
   background-image: url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pixelbg.jpg-zFTuSwgsIV5g29I0rn0e78ItRCUtVb.jpeg");
@@ -301,6 +290,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  overflow-y: auto; /* Allow content to scroll if it overflows vertically */
 }
 
 .slide.active {
@@ -309,10 +299,11 @@ body {
 
 .slide img {
   max-width: 100%;
-  max-height: 300px;
+  max-height: 280px; /* Adjusted from 300px for a bit more text room */
+  height: auto; /* Maintain aspect ratio */
   image-rendering: pixelated;
   border: 3px solid #e77fa8;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Adjusted */
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 6px;
 }
@@ -329,7 +320,7 @@ body {
   color: #fff;
   font-size: 1rem;
   line-height: 1.5;
-  max-width: 80%;
+  max-width: 90%; /* Allow a bit more width */
   text-shadow: 2px 2px 0 #333;
 }
 
@@ -340,22 +331,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around; /* Better distribution */
   position: relative;
+  padding: 10px 0; /* Add some padding */
+  box-sizing: border-box;
 }
 
 .gallery-main {
-  width: 100%;
+  width: 90%; /* Responsive width */
   max-width: 400px;
-  height: 300px;
+  height: auto; /* Auto height based on aspect ratio */
+  aspect-ratio: 4 / 3; /* Maintain aspect ratio for the image container */
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Adjusted */
 }
 
 .gallery-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Changed to contain to see full image */
   border: 3px solid #e77fa8;
   border-radius: 6px;
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
@@ -410,32 +404,33 @@ body {
 
 .gallery-thumbnails {
   display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 8px; /* Increased gap */
+  justify-content: flex-start; /* Align to start for scrolling */
+  width: 90%; /* Take up most of the width */
   max-width: 100%;
-  max-height: 80px;
-  overflow-x: auto;
+  overflow-x: auto; /* Enable horizontal scrolling */
   overflow-y: hidden;
-  padding: 5px;
+  padding: 8px 5px; /* Add some padding */
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   scrollbar-width: thin;
   scrollbar-color: #ff6b9e #ffe6ee;
+  white-space: nowrap; /* Keep thumbnails in one line */
+  box-sizing: border-box;
 }
 
 .gallery-thumbnails::-webkit-scrollbar {
-  height: 6px;
+  height: 8px; /* Slightly thicker scrollbar */
 }
 
 .gallery-thumbnails::-webkit-scrollbar-track {
   background: #ffe6ee;
-  border-radius: 3px;
+  border-radius: 4px; /* Rounded track */
 }
 
 .gallery-thumbnails::-webkit-scrollbar-thumb {
   background: #ff6b9e;
-  border-radius: 3px;
+  border-radius: 4px; /* Rounded thumb */
 }
 
 .gallery-thumbnails::-webkit-scrollbar-thumb:hover {
@@ -443,8 +438,8 @@ body {
 }
 
 .gallery-thumb {
-  width: 40px;
-  height: 40px;
+  width: 50px; /* Larger thumbnails */
+  height: 50px; /* Larger thumbnails */
   object-fit: cover;
   border: 2px solid #e77fa8;
   border-radius: 4px;
@@ -452,7 +447,8 @@ body {
   opacity: 0.6;
   transition: all 0.2s;
   image-rendering: pixelated;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevent shrinking */
+  display: inline-block; /* Ensure they stay in line */
 }
 
 .gallery-thumb.active {
@@ -492,13 +488,14 @@ body {
   background-color: #ffb6c1;
   border: 2px solid #e77fa8;
   color: #333;
-  padding: 10px 20px;
+  padding: 10px 15px; /* Adjusted padding */
   cursor: pointer;
   font-size: 0.8rem;
   position: relative;
   transition: all 0.1s;
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
   border-radius: 6px;
+  line-height: 1.2; /* Better text centering */
 }
 
 .pixel-button:hover {
@@ -561,6 +558,8 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease-in-out;
+  padding: 10px; /* Padding for small screens */
+  box-sizing: border-box;
 }
 
 .birthday-popup.show {
@@ -594,6 +593,7 @@ body {
 .popup-content p {
   font-size: 1.2rem;
   margin-bottom: 20px;
+  color: #333; /* Make text darker for better readability */
 }
 
 .pixel-hearts {
@@ -629,7 +629,7 @@ body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-15px); /* Reduced float */
   }
 }
 
@@ -649,10 +649,11 @@ body {
 
 /* Equalizer Animation */
 .equalizer {
-  display: none;
+  display: none; /* Hidden by default, shown by JS */
   height: 20px;
   margin-top: 5px;
   justify-content: center;
+  align-items: flex-end; /* Align bars to bottom */
 }
 
 .equalizer.active {
@@ -668,31 +669,17 @@ body {
   border-radius: 2px;
 }
 
-.bar:nth-child(1) {
-  animation-delay: 0s;
-}
-.bar:nth-child(2) {
-  animation-delay: 0.1s;
-}
-.bar:nth-child(3) {
-  animation-delay: 0.2s;
-}
-.bar:nth-child(4) {
-  animation-delay: 0.3s;
-}
-.bar:nth-child(5) {
-  animation-delay: 0.4s;
-}
+.bar:nth-child(1) { animation-delay: 0s; }
+.bar:nth-child(2) { animation-delay: 0.1s; }
+.bar:nth-child(3) { animation-delay: 0.2s; }
+.bar:nth-child(4) { animation-delay: 0.3s; }
+.bar:nth-child(5) { animation-delay: 0.4s; }
 
 @keyframes equalize {
-  0%,
-  100% {
-    height: 5px;
-  }
-  50% {
-    height: 20px;
-  }
+  0%, 100% { transform: scaleY(0.25); } /* Use transform for smoother animation */
+  50% { transform: scaleY(1); }
 }
+
 
 /* Autoplay Notification */
 .autoplay-notification {
@@ -708,9 +695,9 @@ body {
   color: #333;
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
   z-index: 1001;
-  transform: translateX(100%);
+  transform: translateX(120%); /* Start further off screen */
   opacity: 0;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .autoplay-notification.show {
@@ -731,50 +718,162 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 768px) { /* Slightly larger breakpoint for tablets */
+    .slide h2 {
+        font-size: 1.3rem;
+    }
+    .slide p {
+        font-size: 0.9rem;
+    }
+    .pixel-button {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+    }
+}
+
 @media (max-width: 600px) {
-  .popup-content h1 {
-    font-size: 1.2rem;
+  .container {
+    width: 95%; /* More width on small screens */
+    margin: 10px auto; /* Reduced margin */
   }
 
-  .song-title {
-    font-size: 0.7rem;
+  .window-header {
+    padding: 6px 10px;
   }
-
-  .music-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-
-  .player-title {
-    font-size: 0.8rem;
-  }
-
   .window-title {
-    font-size: 0.6rem;
+    font-size: 0.6rem; /* Adjusted from original mobile CSS */
+  }
+  .window-button {
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+  }
+  .window-content {
+    padding: 10px;
   }
 
+  .slideshow-container {
+    height: 400px; /* Slightly reduce height on mobile */
+  }
+  .slide img {
+    max-height: 220px; /* Smaller image height */
+    margin-bottom: 10px;
+  }
+  .slide h2 {
+    font-size: 1.2rem; /* Adjusted */
+    text-shadow: 2px 2px 0 #333;
+  }
+  .slide p {
+    font-size: 0.8rem; /* Adjusted */
+    max-width: 95%;
+    line-height: 1.4;
+  }
+
+  /* Hide scrollbar on mobile as it's less user-friendly */
   .scrollbar {
     display: none;
   }
 
-  .gallery-thumbnails {
-    gap: 3px;
-    max-height: 60px;
+  .music-player {
+    padding: 10px;
   }
-
-  .gallery-thumb {
-    width: 30px;
-    height: 30px;
+  .song-title {
+    font-size: 0.7rem; /* As per original */
+  }
+  .music-btn {
+    width: 40px; /* As per original */
+    height: 40px; /* As per original */
+    font-size: 1rem; /* As per original */
+  }
+  .player-controls {
+    gap: 10px;
   }
 
   .gallery-main {
-    max-width: 300px;
-    height: 250px;
+    max-width: 100%; /* Full width */
+    height: auto; /* Maintain aspect */
+    aspect-ratio: 4 / 3; /* Or adjust as needed */
+    margin-bottom: 10px;
+  }
+  .gallery-image {
+    object-fit: contain; /* Ensure full image is visible */
   }
 
+  .gallery-controls {
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .gallery-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
   .gallery-counter {
+    font-size: 0.6rem; /* As per original */
+    padding: 4px 8px; /* Adjusted padding */
+  }
+
+  .gallery-thumbnails {
+    gap: 5px; /* Fine-tuned */
+    max-height: 70px; /* Slightly more height */
+    padding: 5px;
+  }
+  .gallery-thumb {
+    width: 45px; /* Slightly larger for easier tap */
+    height: 45px; /* Slightly larger for easier tap */
+  }
+
+  .navigation {
+    padding: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
+    justify-content: center; /* Center items when wrapped */
+    gap: 10px;
+  }
+  .pixel-button { /* General navigation buttons */
+    padding: 8px 10px;
+    font-size: 0.7rem;
+  }
+  .page-counter {
     font-size: 0.6rem;
-    padding: 3px 6px;
+    padding: 4px 8px;
+    order: -1; /* Move page counter to start if wrapped for some layouts */
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  #prev-btn, #next-btn {
+    min-width: 80px; /* Ensure they have some width */
+  }
+
+
+  .page-indicators {
+    padding: 10px;
+    gap: 8px;
+  }
+  .page-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .popup-content h1 {
+    font-size: 1.2rem; /* As per original */
+  }
+  .popup-content p {
+    font-size: 1rem;
+  }
+  .heart {
+    font-size: 1.5rem;
+    margin: 0 5px;
+  }
+  #startButton {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+  .autoplay-notification {
+    font-size: 0.6rem;
+    padding: 8px 12px;
+    right: 10px;
+    top: 10px;
   }
 }
